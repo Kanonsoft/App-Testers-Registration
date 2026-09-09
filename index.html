@@ -4,11 +4,26 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#070b18" />
+
+    <!-- Kanonsoft favicon -->
+    <link
+      rel="icon"
+      type="image/png"
+      href="https://raw.githubusercontent.com/Kanonsoft/App-Testers-Registration/main/kanonsoft-logo.png"
+    />
+
+    <link
+      rel="apple-touch-icon"
+      href="https://raw.githubusercontent.com/Kanonsoft/App-Testers-Registration/main/kanonsoft-logo.png"
+    />
+
     <meta
       name="description"
       content="Register for the Kanonsoft application testing program."
     />
+
     <title>Kanonsoft — Tester Registration</title>
+
     <style>
       * {
         box-sizing: border-box;
@@ -30,8 +45,16 @@
         height: 100vh;
         height: 100dvh;
         background:
-          radial-gradient(circle at 15% 15%, rgba(139, 92, 246, 0.16), transparent 32rem),
-          radial-gradient(circle at 85% 75%, rgba(62, 232, 255, 0.1), transparent 34rem),
+          radial-gradient(
+            circle at 15% 15%,
+            rgba(139, 92, 246, 0.16),
+            transparent 32rem
+          ),
+          radial-gradient(
+            circle at 85% 75%,
+            rgba(62, 232, 255, 0.1),
+            transparent 34rem
+          ),
           #070b18;
       }
 
@@ -89,11 +112,13 @@
       }
     </style>
   </head>
+
   <body>
     <main class="embed-shell">
       <div class="loading" aria-live="polite">
         <div class="loading-inner">Loading registration form…</div>
       </div>
+
       <iframe
         id="registration-frame"
         title="Kanonsoft tester registration"
