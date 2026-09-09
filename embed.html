@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#070b18" />
+    <meta
+      name="description"
+      content="Register for the Kanonsoft application testing program."
+    />
+    <title>Kanonsoft — Tester Registration</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        width: 100%;
+        min-width: 320px;
+        height: 100%;
+        margin: 0;
+        overflow: hidden;
+        background: #070b18;
+      }
+
+      .embed-shell {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        height: 100dvh;
+        background:
+          radial-gradient(circle at 15% 15%, rgba(139, 92, 246, 0.16), transparent 32rem),
+          radial-gradient(circle at 85% 75%, rgba(62, 232, 255, 0.1), transparent 34rem),
+          #070b18;
+      }
+
+      .loading {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        color: #a9b0c7;
+        font: 500 14px/1.5 Inter, ui-sans-serif, system-ui, sans-serif;
+        letter-spacing: 0.02em;
+      }
+
+      .loading-inner::before {
+        content: "";
+        width: 28px;
+        height: 28px;
+        margin-right: 12px;
+        border: 2px solid rgba(255, 255, 255, 0.14);
+        border-top-color: #3ee8ff;
+        border-radius: 50%;
+        animation: spin 0.8s linear infinite;
+      }
+
+      .loading-inner {
+        display: flex;
+        align-items: center;
+      }
+
+      iframe {
+        position: relative;
+        z-index: 1;
+        display: block;
+        width: 100%;
+        height: 100%;
+        border: 0;
+        opacity: 0;
+        background: #070b18;
+      }
+
+      iframe.loaded {
+        opacity: 1;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .loading-inner::before {
+          animation: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="embed-shell">
+      <div class="loading" aria-live="polite">
+        <div class="loading-inner">Loading registration form…</div>
+      </div>
+      <iframe
+        id="registration-frame"
+        title="Kanonsoft tester registration"
+        src="https://script.google.com/macros/s/AKfycbwqY-9OYfCE9Yb94b4b7tzUZx-cUpz6HjXI6a2PCrZjI4F_AAdWDgZKciZqqWa6TS88AA/exec"
+        loading="eager"
+        referrerpolicy="strict-origin-when-cross-origin"
+      ></iframe>
+    </main>
+
+    <script>
+      const frame = document.querySelector("#registration-frame");
+      const loading = document.querySelector(".loading");
+
+      frame.addEventListener("load", () => {
+        frame.classList.add("loaded");
+        loading.hidden = true;
+      });
+    </script>
+  </body>
+</html>
