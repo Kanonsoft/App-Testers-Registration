@@ -4,138 +4,315 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#070b18" />
-
-    <!-- Kanonsoft favicon -->
-    <link
-      rel="icon"
-      type="image/png"
-      href="https://raw.githubusercontent.com/Kanonsoft/App-Testers-Registration/main/kanonsoft-logo.png"
-    />
-
-    <link
-      rel="apple-touch-icon"
-      href="https://raw.githubusercontent.com/Kanonsoft/App-Testers-Registration/main/kanonsoft-logo.png"
-    />
-
     <meta
       name="description"
-      content="Register for the Kanonsoft application testing program."
+      content="Join the Kanonsoft app testing program."
     />
-
-    <title>Kanonsoft — Tester Registration</title>
-
+    <title>Kanonsoft — App Testing</title>
     <style>
+      :root {
+        color-scheme: dark;
+        --background: #070b18;
+        --text: #f7f8ff;
+        --muted: #a9b0c7;
+        --violet: #8b5cf6;
+        --cyan: #3ee8ff;
+        --stroke: rgba(255, 255, 255, 0.12);
+      }
+
       * {
         box-sizing: border-box;
       }
-
-      html,
-      body {
-        width: 100%;
+      html {
         min-width: 320px;
-        height: 100%;
-        margin: 0;
-        overflow: hidden;
-        background: #070b18;
+        min-height: 100%;
       }
 
-      .embed-shell {
-        position: relative;
-        width: 100%;
-        height: 100vh;
-        height: 100dvh;
+      body {
+        min-height: 100vh;
+        margin: 0;
+        color: var(--text);
         background:
           radial-gradient(
-            circle at 15% 15%,
-            rgba(139, 92, 246, 0.16),
-            transparent 32rem
+            circle at 12% 10%,
+            rgba(139, 92, 246, 0.2),
+            transparent 31rem
           ),
           radial-gradient(
-            circle at 85% 75%,
-            rgba(62, 232, 255, 0.1),
+            circle at 88% 80%,
+            rgba(62, 232, 255, 0.12),
             transparent 34rem
           ),
-          #070b18;
+          var(--background);
+        font-family:
+          Inter,
+          ui-sans-serif,
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
       }
 
-      .loading {
-        position: absolute;
-        inset: 0;
-        display: grid;
-        place-items: center;
-        color: #a9b0c7;
-        font: 500 14px/1.5 Inter, ui-sans-serif, system-ui, sans-serif;
-        letter-spacing: 0.02em;
-      }
-
-      .loading-inner::before {
+      body::before {
         content: "";
-        width: 28px;
-        height: 28px;
-        margin-right: 12px;
-        border: 2px solid rgba(255, 255, 255, 0.14);
-        border-top-color: #3ee8ff;
-        border-radius: 50%;
-        animation: spin 0.8s linear infinite;
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        opacity: 0.2;
+        background-image:
+          linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+          linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0.035) 1px,
+            transparent 1px
+          );
+        background-size: 46px 46px;
+        mask-image: linear-gradient(to bottom, black, transparent 88%);
       }
 
-      .loading-inner {
-        display: flex;
-        align-items: center;
-      }
-
-      iframe {
+      .shell {
         position: relative;
         z-index: 1;
-        display: block;
-        width: 100%;
-        height: 100%;
-        border: 0;
-        opacity: 0;
-        background: #070b18;
+        display: grid;
+        min-height: 100vh;
+        min-height: 100svh;
+        place-items: center;
+        padding: 24px;
       }
 
-      iframe.loaded {
-        opacity: 1;
+      .card {
+        width: min(100%, 760px);
+        overflow: hidden;
+        border: 1px solid var(--stroke);
+        border-radius: 30px;
+        background: linear-gradient(
+          145deg,
+          rgba(25, 31, 58, 0.88),
+          rgba(15, 20, 40, 0.72)
+        );
+        box-shadow:
+          0 38px 100px rgba(0, 0, 0, 0.46),
+          inset 0 1px rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(24px) saturate(140%);
+        -webkit-backdrop-filter: blur(24px) saturate(140%);
       }
 
-      @keyframes spin {
-        to {
-          transform: rotate(360deg);
+      .card-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 26px 30px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .brand {
+        font-size: 1.05rem;
+        font-weight: 800;
+        letter-spacing: -0.025em;
+      }
+      .platform {
+        color: #929ab1;
+        font-size: 0.72rem;
+        font-weight: 750;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+      .content {
+        padding: 54px 64px 60px;
+      }
+      .eyebrow {
+        margin: 0 0 18px;
+        color: var(--cyan);
+        font-size: 0.75rem;
+        font-weight: 800;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        max-width: 620px;
+        margin: 0;
+        color: transparent;
+        background: linear-gradient(100deg, #fff 4%, #b4a4ff 42%, #73efff 86%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        font-size: clamp(2.8rem, 7vw, 4.5rem);
+        line-height: 1.02;
+        letter-spacing: -0.055em;
+      }
+
+      .intro {
+        max-width: 590px;
+        margin: 22px 0 34px;
+        color: var(--muted);
+        font-size: 1rem;
+        line-height: 1.72;
+      }
+      .steps {
+        display: grid;
+        gap: 14px;
+      }
+
+      .step {
+        display: grid;
+        grid-template-columns: 44px minmax(0, 1fr) auto;
+        gap: 16px;
+        align-items: center;
+        padding: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.035);
+      }
+
+      .step-number {
+        display: grid;
+        width: 38px;
+        height: 38px;
+        place-items: center;
+        border-radius: 12px;
+        background: rgba(139, 92, 246, 0.65);
+        font-size: 0.83rem;
+        font-weight: 800;
+      }
+
+      .step h2 {
+        margin: 0 0 5px;
+        font-size: 1rem;
+        letter-spacing: -0.015em;
+      }
+      .step p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.82rem;
+        line-height: 1.55;
+      }
+
+      .action {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        min-height: 46px;
+        border-radius: 14px;
+        padding: 0 17px;
+        color: #fff;
+        background: linear-gradient(110deg, #8357ed, #5575ee 53%, #30bfd7);
+        box-shadow: 0 12px 28px rgba(80, 88, 230, 0.28);
+        font-size: 0.78rem;
+        font-weight: 750;
+        text-decoration: none;
+        white-space: nowrap;
+      }
+
+      .action:hover {
+        box-shadow: 0 15px 35px rgba(80, 88, 230, 0.42);
+      }
+      .action:focus-visible {
+        outline: 2px solid var(--cyan);
+        outline-offset: 3px;
+      }
+      .note {
+        margin: 22px 0 0;
+        color: #7f879d;
+        font-size: 0.75rem;
+        line-height: 1.6;
+      }
+
+      @media (max-width: 650px) {
+        .shell {
+          padding: 10px;
         }
-      }
-
-      @media (prefers-reduced-motion: reduce) {
-        .loading-inner::before {
-          animation: none;
+        .card {
+          border-radius: 23px;
+        }
+        .card-header {
+          padding: 20px;
+        }
+        .content {
+          padding: 36px 20px 30px;
+        }
+        h1 {
+          font-size: clamp(2.55rem, 13vw, 3.5rem);
+        }
+        .intro {
+          margin-bottom: 27px;
+          font-size: 0.94rem;
+        }
+        .step {
+          grid-template-columns: 38px minmax(0, 1fr);
+          gap: 12px;
+          padding: 15px;
+        }
+        .step .action {
+          grid-column: 1 / -1;
+          width: 100%;
         }
       }
     </style>
   </head>
-
   <body>
-    <main class="embed-shell">
-      <div class="loading" aria-live="polite">
-        <div class="loading-inner">Loading registration form…</div>
-      </div>
+    <main class="shell">
+      <section class="card" aria-labelledby="page-title">
+        <header class="card-header">
+          <span class="brand">Kanonsoft</span>
+          <span class="platform">Android testing</span>
+        </header>
 
-      <iframe
-        id="registration-frame"
-        title="Kanonsoft tester registration"
-        src="https://script.google.com/macros/s/AKfycbwqY-9OYfCE9Yb94b4b7tzUZx-cUpz6HjXI6a2PCrZjI4F_AAdWDgZKciZqqWa6TS88AA/exec"
-        loading="eager"
-        referrerpolicy="strict-origin-when-cross-origin"
-      ></iframe>
+        <div class="content">
+          <p class="eyebrow">Tester access</p>
+          <h1 id="page-title">Become a Kanonsoft tester.</h1>
+          <p class="intro">
+            Join the Kanonsoft testing community and get access to applications
+            before their wider release. No registration form is required.
+          </p>
+
+          <div class="steps">
+            <section class="step">
+              <span class="step-number">1</span>
+              <div>
+                <h2>Join the tester group</h2>
+                <p>
+                  Use the same Google account you use for Google Play, then
+                  select Join group.
+                </p>
+              </div>
+              <a
+                class="action"
+                href="https://groups.google.com/g/kanonsoft-app-testers"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Join Google Group <span aria-hidden="true">↗</span></a
+              >
+            </section>
+
+            <section class="step">
+              <span class="step-number">2</span>
+              <div>
+                <!-- EDIT THE APP NAME BELOW -->
+                <h2>PCSO Lotto Results &amp; Analysis</h2>
+                <p>
+                  After joining the group, open the app listing and install the
+                  testing version.
+                </p>
+              </div>
+              <!-- EDIT THE APP LINK BELOW -->
+              <a
+                class="action"
+                href="https://play.google.com/store/apps/details?id=com.kanonsoft.lottoresultsandanalysisph"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Open test app <span aria-hidden="true">↗</span></a
+              >
+            </section>
+          </div>
+
+          <p class="note">
+            If the app is unavailable, confirm that you joined the group with
+            the same Google account, then try again after a few minutes.
+          </p>
+        </div>
+      </section>
     </main>
-
-    <script>
-      const frame = document.querySelector("#registration-frame");
-      const loading = document.querySelector(".loading");
-
-      frame.addEventListener("load", () => {
-        frame.classList.add("loaded");
-        loading.hidden = true;
-      });
-    </script>
   </body>
 </html>
